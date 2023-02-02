@@ -1,0 +1,32 @@
+<s:Envelope xmlns:des="http://DescargaMasivaTerceros.sat.gob.mx" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+	<s:Header/>
+	<s:Body>
+		<des:VerificaSolicitudDescarga>
+			<des:solicitud IdSolicitud="{{ID_SOLICITUD}}" RfcSolicitante="{{RFC_SOLICITANTE}}">
+				<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+					<SignedInfo>
+						<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+						<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+						<Reference URI="">
+							<Transforms>
+								<Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+							</Transforms>
+							<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+							<DigestValue>{{&DIGEST_VALUE}}</DigestValue>
+						</Reference>
+					</SignedInfo>
+					<SignatureValue>{{&SIGNATURE_VALUE}}</SignatureValue>
+					<KeyInfo>
+						<X509Data>
+							<X509IssuerSerial>
+								<X509IssuerName>{{&ISSUER_NAME}}</X509IssuerName>
+								<X509SerialNumber>{{SERIAL_NUMBER}}</X509SerialNumber>
+							</X509IssuerSerial>
+							<X509Certificate>{{&CERTIFICADO}}</X509Certificate>
+						</X509Data>
+					</KeyInfo>
+				</Signature>
+			</des:solicitud>
+		</des:VerificaSolicitudDescarga>
+	</s:Body>
+</s:Envelope>
